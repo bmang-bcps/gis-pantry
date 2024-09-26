@@ -15,7 +15,8 @@ Goes through the JSON response recieved through the Common Hosted Forms (CHEFS) 
 
 * Requests
 * Base64
-* Constants (optional)
+* Constants / dotenv (optional)
+* Logging (optional)
 
 # Known Bugs/Limitations
 
