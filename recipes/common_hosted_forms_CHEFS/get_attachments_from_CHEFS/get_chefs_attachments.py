@@ -16,7 +16,8 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(asctime)s | %(
 
 def get_chefs_submissions_json(form_id, api_token, version, component_name, out_folder):
     """
-    Returns the JSON response from the CHEFS API for the specified form ID, API token, and version.
+    Returns the JSON response from the CHEFS API for the specified form ID, API token, and version, parses through the JSON
+    to grab attachments from the form's File Upload component and saves them to a folder
 
     Args:
         form_id (str): The form ID. View read me for more information.
