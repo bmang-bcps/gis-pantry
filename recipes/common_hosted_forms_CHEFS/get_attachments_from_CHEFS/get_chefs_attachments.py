@@ -51,7 +51,6 @@ def get_chefs_submissions_json(form_id, api_token, version, component_name, out_
     
     # go through the JSON
     for form in response.json():
-        
         # get attachment information from form with name of the File Upload component as key
         attachment = form[f"{component_name}"]
        # iterate through list to get attachment properties
