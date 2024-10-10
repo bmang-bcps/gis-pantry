@@ -13,10 +13,10 @@ Goes through the JSON response recieved through the Common Hosted Forms (CHEFS) 
 
 # Parameters
 
-* form_id (str): [The form ID](https://github.com/bcgov/gis-pantry/tree/master/recipes/common_hosted_forms_CHEFS/response_pull_down_from_CHEFS_api/form_id_api_key.png){:target="_blank"}
-* api_token (str): [The API token](https://github.com/bcgov/gis-pantry/tree/master/recipes/common_hosted_forms_CHEFS/response_pull_down_from_CHEFS_api/form_id_api_key.png){:target="_blank"}
+* form_id (str): The ID of your form ID, it's the alphanumberic string found at the end of your form's URL when viewing it in a browser (https://submit.digital.gov.bc.ca/app/form/submit?f=\[form_id\]).
+* api_token (str): The [API key](https://developer.gov.bc.ca/docs/default/component/chefs-techdocs/Capabilities/Data-Management/Generating-API-keys/) for your form.
 * version (int): The version of the form.
-* component_name (str): The name of the form's File Upload component
+* component_name (str): The name of the form's [File Upload component](https://developer.gov.bc.ca/docs/default/component/chefs-techdocs/Components/Form-Builder/BC-Government/#file-upload)
 * out_folder (str): The folder location to save the attachments
 
 # Dependencies/Requirements/Environments
