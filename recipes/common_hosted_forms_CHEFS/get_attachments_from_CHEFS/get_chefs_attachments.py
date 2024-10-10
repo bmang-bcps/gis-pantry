@@ -1,7 +1,7 @@
 # --------------------------------------------------------------------------------------------------
 # Author: Brian Mang
 # Ministry, Division, Branch: WLRS, GeoBC, AVA GS
-# Updated: 2024-09-19
+# Updated: 2024-10-10
 # Description:
 #    Derived from Lawrence Perry's get_chefs_submissions_json.py
 #    https://github.com/bcgov/gis-pantry/tree/master/recipes/common_hosted_forms_CHEFS/response_pull_down_from_CHEFS_api
@@ -10,14 +10,14 @@
 import requests
 import base64
 import logging
+from pathlib import Path
 import constants
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(asctime)s | %(message)s", datefmt='%Y-%m-%d %H:%M:%S %z')
 
 def get_chefs_submissions_json(form_id, api_token, version, component_name, out_folder):
     """
-    Returns the JSON response from the CHEFS API for the specified form ID, API token, and version, parses through the JSON
-    to grab attachments from the form's File Upload component and saves them to a folder
+    Returns the JSON response from the CHEFS API for the specified form ID, API token, and version.
 
     Args:
         form_id (str): The form ID. View read me for more information.
@@ -46,11 +46,13 @@ def get_chefs_submissions_json(form_id, api_token, version, component_name, out_
         "status": "SUBMITTED"
     }
     
-    # get the submission response
+    # get submission response
     response = requests.get(url, headers=headers, params=params)
-    
+    logging.info(f"Submission reponse: {response}")
     # go through the JSON
     for form in response.json():
+        # the submission ID of the submitted form
+        form_sub_id = form["form"]["submissionId"]
         # get attachment information from form with name of the File Upload component as key
         attachment = form[f"{component_name}"]
        # iterate through list to get attachment properties
@@ -65,8 +67,14 @@ def get_chefs_submissions_json(form_id, api_token, version, component_name, out_
             att_response = requests.get(attachment_url, headers=headers, stream=True)
             # attempt to download attachments
             if att_response.status_code == 200:
+                # make subfolders using form ID
+                # parents=True will create missing any 'parents' of path
+                # exist_ok=True to not raise an error if directory already exists
+                logging.info(f"Creating a subfolder for submitted form ID: {form_sub_id}")
+                Path(f"{out_folder}/{form_sub_id}").mkdir(parents=True, exist_ok=True)
                 # save attachments to output folder
-                with open(f"{out_folder}/{original_name}", 'wb') as file:
+                logging.info(f"Downloading attachments for submitted form ID: {form_sub_id}")
+                with open(f"{out_folder}//{form_sub_id}/{original_name}", 'wb') as file:
                     # stream the content in chunks to avoid large memory usage
                     for chunk in att_response.iter_content(chunk_size=8192):
                         file.write(chunk)
