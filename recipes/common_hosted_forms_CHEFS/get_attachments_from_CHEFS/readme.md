@@ -15,7 +15,7 @@ Goes through the JSON response recieved through the Common Hosted Forms (CHEFS) 
 
 * form_id (str): The ID of your form. The form ID is the alphanumberic string located at the end of your form's URL when viewed it in a browser <span>ht</span>tps://submit.digital.gov.bc.ca/app/form/submit?f=[form_id]
 * api_token (str): The [API key](https://developer.gov.bc.ca/docs/default/component/chefs-techdocs/Capabilities/Data-Management/Generating-API-keys/) for your form.
-* version (int): The version of the form.
+* version (int): The [version](https://developer.gov.bc.ca/docs/default/component/chefs-techdocs/Archive/Quick-start-guide/#managing-versions) of the form.
 * component_name (str): The Property Name of the form's [File Upload component](https://developer.gov.bc.ca/docs/default/component/chefs-techdocs/Components/Form-Builder/BC-Government/#file-upload) configured through the API tab of the File Upload Component in the Form Builder.
 * out_folder (str): The folder location to save the attachments into.
 
