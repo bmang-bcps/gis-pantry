@@ -25,6 +25,7 @@ Goes through the JSON response recieved through the Common Hosted Forms (CHEFS) 
 * Base64
 * Constants / dotenv (optional)
 * Logging
+* pathlib.Path
 
 # Known Bugs/Limitations
 
