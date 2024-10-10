@@ -29,7 +29,7 @@ Goes through the JSON response recieved through the Common Hosted Forms (CHEFS) 
 
 # Known Bugs/Limitations
 
-None known
+Will not run on GTS, but can be run locally, on Jenkins and probably on GitHub actions
 
 # Update Log
 
